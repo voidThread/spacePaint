@@ -26,12 +26,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
     MainWindow.cpp \
-    PaintViewWidget/PaintViewWidget.cpp
+    PaintViewWidget/PaintViewWidget.cpp \
+    PaintViewWidget/PaintWidgetTestWindow.cpp
 
 HEADERS += \
     MainWindow.h \
     PaintViewWidget/PaintTool.h \
-    PaintViewWidget/PaintViewWidget.h
+    PaintViewWidget/PaintViewWidget.h \
+    PaintViewWidget/PaintWidgetTestWindow.h
 
 FORMS += \
-    MainWindow.ui
+    MainWindow.ui \
+    PaintViewWidget/PaintWidgetTestWindow.ui
