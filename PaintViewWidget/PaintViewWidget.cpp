@@ -36,3 +36,62 @@ void PaintViewWidget::ChangeColor(QColor color)
      * like pen, flood fill and so on.
      */
 }
+
+void PaintViewWidget::CreateNewCanvas(unsigned width, unsigned height)
+{
+    /*
+     * (SLOT) Clear the current canvas and create new.
+     * \param width Width of the canvas in pixels.
+     * \param height Height of the canvas in pixels.
+     */
+}
+
+void PaintViewWidget::ZoomIn()
+{
+    /*
+     * (SLOT) Incrase current zoom.
+     */
+}
+
+void PaintViewWidget::ZoomOut()
+{
+    /*
+     * (SLOT) Decrase current zoom.
+     */
+}
+
+void PaintViewWidget::ZoomReset()
+{
+    /*
+     * (SLOT) Reset zoom to 100%.
+     */
+}
+
+double PaintViewWidget::GetZoom() const
+{
+    /*
+     * Get current zoom level.
+     * 1.0 = 100%
+     */
+
+    return 1.0;
+}
+
+unsigned PaintViewWidget::CanvasWidth() const
+{
+    return 0;
+}
+
+unsigned PaintViewWidget::CanvasHeight() const
+{
+    return 0;
+}
+
+PaintTool PaintViewWidget::SelectedPaintTool() const
+{
+    /*
+     * Get the current selected paint tool.
+     */
+
+    return paintTool;
+}

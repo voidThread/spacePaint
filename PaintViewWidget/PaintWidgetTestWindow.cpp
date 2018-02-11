@@ -55,6 +55,7 @@ void PaintWidgetTestWindow::on_pushButton_4_clicked()
     if (color.isValid())
     {
         ui->paintView->ChangeColor(color);
+        ui->colorWidget->setStyleSheet("background-color:" + color.name());
     }
 }
 
