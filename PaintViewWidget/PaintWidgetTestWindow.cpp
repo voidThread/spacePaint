@@ -10,11 +10,19 @@ PaintWidgetTestWindow::PaintWidgetTestWindow(QWidget *parent) :
     ui(new Ui::PaintWidgetTestWindow)
 {
     ui->setupUi(this);
+
+    connect(ui->paintView, &PaintViewWidget::ZoomChanged,
+            this, &PaintWidgetTestWindow::ZoomChanged);
 }
 
 PaintWidgetTestWindow::~PaintWidgetTestWindow()
 {
     delete ui;
+}
+
+void PaintWidgetTestWindow::showEvent(QShowEvent *)
+{
+    ui->paintView->LoadImage("./TestData/flower.jpg");
 }
 
 void PaintWidgetTestWindow::on_pushButton_clicked()
@@ -71,4 +79,41 @@ void PaintWidgetTestWindow::on_pushButton_6_clicked()
     /*
      * Redo last operation.
      */
+}
+
+void PaintWidgetTestWindow::on_pushButton_7_clicked()
+{
+    /*
+     * Zoom in.
+     */
+
+    ui->paintView->ZoomIn();
+}
+
+void PaintWidgetTestWindow::on_pushButton_9_clicked()
+{
+    /*
+     * Zoom reset.
+     */
+
+    ui->paintView->ZoomReset();
+}
+
+void PaintWidgetTestWindow::on_pushButton_8_clicked()
+{
+    /*
+     * Zoom out.
+     */
+
+    ui->paintView->ZoomOut();
+}
+
+void PaintWidgetTestWindow::ZoomChanged(double newZoom)
+{
+    /*
+     * (SLOT) Zoom has changed.
+     */
+
+    double percent = 100.0 * newZoom;
+    ui->label_5->setText(QString::number(percent) + "%");
 }

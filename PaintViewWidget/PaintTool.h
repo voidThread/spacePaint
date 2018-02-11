@@ -5,15 +5,16 @@ enum class PaintTool : unsigned
 {
     NN          = 1000,
 
-    Pen         = 0,
-    Eraser      = 1,
-    Spray       = 2,
-    Line        = 3,
-    Shape       = 4,
-    ColorPicker = 5,
-    Text        = 6,
-    Selection   = 7,
-    FloodFill   = 8
+    Hand        = 0,
+    Pen         = 1,
+    Eraser      = 2,
+    Spray       = 3,
+    Line        = 4,
+    Shape       = 5,
+    ColorPicker = 6,
+    Text        = 7,
+    Selection   = 8,
+    FloodFill   = 9
 };
 
 #endif // PAINTTOOL_H

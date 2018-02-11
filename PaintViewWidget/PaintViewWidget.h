@@ -7,11 +7,16 @@
 
 class PaintViewWidget : public QGraphicsView
 {
+    Q_OBJECT
+
 public:
     PaintViewWidget(QWidget * parent = Q_NULLPTR);
 
     void RenderToPainter(QPainter & painter);
+
     void LoadImage(QImage & image);
+    void LoadImage(QString filename);
+
     double GetZoom() const;
     unsigned CanvasWidth() const;
     unsigned CanvasHeight() const;
@@ -20,6 +25,13 @@ public:
 private:
     QGraphicsScene scene;
     PaintTool paintTool = PaintTool::NN;
+    unsigned canvasWidth = 0;
+    unsigned canvasHeight = 0;
+    QPixmap pixmapToLoad;
+    double zoomLevel = 1.0;
+
+private slots:
+    void OnCanvasCreated();
 
 public slots:
     void ChangePaintTool(PaintTool tool);
@@ -28,10 +40,14 @@ public slots:
     void ZoomIn();
     void ZoomOut();
     void ZoomReset();
+    void SetZoomLevel(double zoom);
 
 signals:
     void ZoomChanged(double newZoom);
     void CanvasCreated();
+    void ImageLoaded();
+    void PaintToolChanged(PaintTool tool);
+    void ColorChanged(QColor color);
 };
 
 #endif // PAINTVIEWWIDGET_H
