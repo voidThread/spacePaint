@@ -6,8 +6,8 @@
 namespace GLOBAL_STRINGS
 {
     namespace PROGRAM_INFO {
-        QString PROGRAM_NAME(QObject::tr("spacePaint"));
-        QString ORGANIZATION_NAME(QObject::tr("DB&DG"));
-        QString PROGRAM_VERSION(QObject::tr("0.1"));
+        extern QString PROGRAM_NAME;
+        extern QString ORGANIZATION_NAME;
+        extern QString PROGRAM_VERSION;
     }
 }

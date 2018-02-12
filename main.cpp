@@ -1,7 +1,7 @@
-#include "MainWindow/MainWindow.h"
-#include <QApplication>
+#include <GlobalNames.h>
+#include <MainWindow/MainWindow.h>
 
-#include "GlobalNames.h"
+#include <QApplication>
 
 int main(int argc, char *argv[])
 {

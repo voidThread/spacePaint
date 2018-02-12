@@ -1,5 +1,6 @@
 #include <GlobalNames.h>
-#include "MainWindow.h"
+#include <MainWindow/MainWindow.h>
+#include <MdiChild/MdiChild.h>
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
