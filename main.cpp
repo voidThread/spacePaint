@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #include "MainWindow/MainWindow.h"
+=======
+#include "MainWindow.h"
+>>>>>>> master
 #include <QApplication>
 
 #include "GlobalNames.h"
