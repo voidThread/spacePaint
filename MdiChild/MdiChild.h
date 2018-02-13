@@ -33,5 +33,6 @@ class MdiChild : public PaintViewWidget
 
   QString openedFile;
   bool isUntitled;
+  QImage image;
 };
 

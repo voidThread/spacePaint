@@ -2,14 +2,35 @@
 // Created by dawid on 12.02.18.
 //
 
+#include <QtGui/QTextDocument>
+#include <QtGui/QImageReader>
 #include "MdiChild.h"
-MdiChild::MdiChild() {
 
+MdiChild::MdiChild()
+{
+  setAttribute(Qt::WA_DeleteOnClose);
+  isUntitled = true;
 }
-void MdiChild::newFile() {
+void MdiChild::newFile()
+{
+  static int sequenceNumber = 0;
 
+  isUntitled = true;
+  openedFile = tr("drawing%1.jpg").arg(sequenceNumber++);
+  setWindowTitle(openedFile + "[*]");
 }
-bool MdiChild::loadFile(const QString &fileName) {
+bool MdiChild::loadFile(const QString &fileName)
+{
+  QImageReader imgRead(fileName);
+  if (imgRead.canRead())
+  {
+    image = imgRead.read();
+    qDebug("Image readed");
+    return true;
+  } else
+  {
+    qDebug(imgRead.errorString().toStdString().c_str());
+  }
   return false;
 }
 bool MdiChild::save() {
