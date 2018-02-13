@@ -25,6 +25,7 @@ bool MdiChild::loadFile(const QString &fileName)
   if (imgRead.canRead())
   {
     image = imgRead.read();
+    LoadImage(image);
     qDebug("Image readed");
     return true;
   } else
