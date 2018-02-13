@@ -1,6 +1,10 @@
 #include "PaintViewWidget.h"
 
 #include <QGraphicsScene>
+#include <QGraphicsPixmapItem>
+#include <QMatrix>
+#include <QApplication>
+#include <QWheelEvent>
 #include <QDebug>
 
 PaintViewWidget::PaintViewWidget(QWidget *parent)
@@ -10,6 +14,23 @@ PaintViewWidget::PaintViewWidget(QWidget *parent)
 
     connect(this, &PaintViewWidget::CanvasCreated,
             this, &PaintViewWidget::OnCanvasCreated);
+}
+
+void PaintViewWidget::wheelEvent(QWheelEvent *event)
+{
+    /*
+     * Mouse wheel handler.
+     */
+
+    // Handle zoom-in / zoom-out
+    if (event->delta() > 0)
+    {
+        ZoomIn();
+    }
+    else
+    {
+        ZoomOut();
+    }
 }
 
 void PaintViewWidget::RenderToPainter(QPainter & painter)
@@ -82,7 +103,7 @@ void PaintViewWidget::ZoomIn()
      * (SLOT) Incrase current zoom.
      */
 
-    SetZoomLevel(zoomLevel + 0.05);
+    SetZoomLevel(zoomLevel + zoomStep);
 }
 
 void PaintViewWidget::ZoomOut()
@@ -91,7 +112,7 @@ void PaintViewWidget::ZoomOut()
      * (SLOT) Decrase current zoom.
      */
 
-    SetZoomLevel(zoomLevel - 0.05);
+    SetZoomLevel(zoomLevel - zoomStep);
 }
 
 void PaintViewWidget::ZoomReset()
@@ -100,7 +121,10 @@ void PaintViewWidget::ZoomReset()
      * (SLOT) Reset zoom to 100%.
      */
 
-    // NOT IMPLEMENTED
+    zoomLevel = 1.0;
+    this->resetTransform();
+
+    emit ZoomChanged(zoomLevel);
 }
 
 double PaintViewWidget::GetZoom() const
@@ -111,6 +135,28 @@ double PaintViewWidget::GetZoom() const
      */
 
     return zoomLevel;
+}
+
+void PaintViewWidget::FitInView()
+{
+    /*
+     * (SLOT) Fit the image inside client area of paint widget.
+     * Will recalculate the current zoom level.
+     */
+
+    this->fitInView(this->sceneRect(), Qt::KeepAspectRatio);
+
+    // process the events - the scrollbar will goes to state `hidden`.
+    QApplication::processEvents();
+
+    // fit in view again - the scrollbars are invisible now
+    this->fitInView(this->sceneRect(), Qt::KeepAspectRatio);
+
+    // recalculate zoom level
+    QMatrix currentMatrix = this->matrix();
+    zoomLevel = currentMatrix.m11();
+
+    emit ZoomChanged(zoomLevel);
 }
 
 unsigned PaintViewWidget::CanvasWidth() const
@@ -140,8 +186,10 @@ void PaintViewWidget::OnCanvasCreated()
 
     if (pixmapToLoad.isNull() == false)
     {
-        scene.addPixmap(pixmapToLoad);
+        backgroundItem = scene.addPixmap(pixmapToLoad);
         pixmapToLoad = QPixmap();
+
+        ZoomReset();
 
         emit ImageLoaded();
     }

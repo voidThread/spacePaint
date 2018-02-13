@@ -61,6 +61,13 @@
       </spacer>
      </item>
      <item>
+      <widget class="QPushButton" name="pushButton_10">
+       <property name="text">
+        <string>FIT IN VIEW</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="pushButton_7">
        <property name="text">
         <string>ZOOM IN +</string>

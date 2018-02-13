@@ -32,6 +32,7 @@ void PaintWidgetTestWindow::on_pushButton_clicked()
      */
 
     close();
+    QApplication::exit();
 }
 
 void PaintWidgetTestWindow::on_pushButton_3_clicked()
@@ -116,4 +117,13 @@ void PaintWidgetTestWindow::ZoomChanged(double newZoom)
 
     double percent = 100.0 * newZoom;
     ui->label_5->setText(QString::number(percent) + "%");
+}
+
+void PaintWidgetTestWindow::on_pushButton_10_clicked()
+{
+    /*
+     * (SLOT) Fit the image into the widget rect. Changes the zoom level.
+     */
+
+    ui->paintView->FitInView();
 }

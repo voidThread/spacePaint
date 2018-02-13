@@ -13,6 +13,7 @@ public:
     PaintViewWidget(QWidget * parent = Q_NULLPTR);
 
     void RenderToPainter(QPainter & painter);
+    void wheelEvent(QWheelEvent *event) override;
 
     void LoadImage(QImage & image);
     void LoadImage(QString filename);
@@ -29,6 +30,8 @@ private:
     unsigned canvasHeight = 0;
     QPixmap pixmapToLoad;
     double zoomLevel = 1.0;
+    QGraphicsPixmapItem * backgroundItem = nullptr;
+    double zoomStep = 0.05; // To be configured by settings
 
 private slots:
     void OnCanvasCreated();
@@ -41,6 +44,7 @@ public slots:
     void ZoomOut();
     void ZoomReset();
     void SetZoomLevel(double zoom);
+    void FitInView();
 
 signals:
     void ZoomChanged(double newZoom);
