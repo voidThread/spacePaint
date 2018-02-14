@@ -12,10 +12,10 @@ class MdiChild : public PaintViewWidget
     MdiChild();
 
     void NewFile();
-    bool LoadFile(const QString &fileName);
+    bool LoadFile(const QString fileName);
     bool Save();
     bool SaveAs();
-    bool SaveFile(const QString &fileName);
+    bool SaveFile(const QString fileName);
     QString UserFriendlyCurrentFile();
     QString CurrentFile();
 
@@ -27,8 +27,8 @@ class MdiChild : public PaintViewWidget
 
  private:
     bool MaybeSave();
-    void SetCurrentFile(const QString &fileName);
-    QString StrippedName(const QString &fullFileName);
+    void SetCurrentFile(const QString fileName);
+    QString StrippedName(const QString fullFileName);
 
     QString openedFile;
     bool isUntitled;

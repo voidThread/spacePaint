@@ -18,7 +18,7 @@ class MainWindow : public QMainWindow
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    bool OpenFile(const QString &fileName);
+    bool OpenFile(const QString fileName);
 
  protected:
     void closeEvent(QCloseEvent *event) override;
@@ -26,7 +26,7 @@ class MainWindow : public QMainWindow
  private slots:
     void NewFile();
     void Open();
-    bool LoadFile(const QString &fileName);
+    bool LoadFile(const QString fileName);
     MdiChild* CreateMdiChild();
     void UpdateMenus();
 
@@ -34,7 +34,7 @@ class MainWindow : public QMainWindow
     Ui::MainWindow *ui;
 
     MdiChild *ActiveMdiChild() const;
-    QMdiSubWindow *FindMdiChild(const QString &fileName) const;
+    QMdiSubWindow *FindMdiChild(const QString fileName) const;
 
     void CreateActions();
     void CreateStatusBar();

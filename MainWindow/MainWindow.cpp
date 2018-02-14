@@ -52,7 +52,7 @@ void MainWindow::Open()
         OpenFile(fileName);
     }
 }
-bool MainWindow::OpenFile(const QString &fileName)
+bool MainWindow::OpenFile(const QString fileName)
 {
     const bool succeeded = LoadFile(fileName);
     if (succeeded)
@@ -61,7 +61,7 @@ bool MainWindow::OpenFile(const QString &fileName)
     }
     return succeeded;
 }
-bool MainWindow::LoadFile(const QString &fileName)
+bool MainWindow::LoadFile(const QString fileName)
 {
     MdiChild *child = CreateMdiChild();
     const bool succeeded = child->LoadFile(fileName);
@@ -109,7 +109,7 @@ MdiChild *MainWindow::ActiveMdiChild() const
 {
     return nullptr;
 }
-QMdiSubWindow *MainWindow::FindMdiChild(const QString &fileName) const
+QMdiSubWindow *MainWindow::FindMdiChild(const QString fileName) const
 {
     return nullptr;
 }

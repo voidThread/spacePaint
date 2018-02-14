@@ -19,7 +19,7 @@ void MdiChild::NewFile()
     openedFile = tr("drawing%1.jpg").arg(sequenceNumber++);
     setWindowTitle(openedFile + "[*]");
 }
-bool MdiChild::LoadFile(const QString &fileName)
+bool MdiChild::LoadFile(const QString fileName)
 {
     QImageReader imgRead(fileName);
     if (imgRead.canRead())
@@ -46,7 +46,7 @@ bool MdiChild::SaveAs()
 {
     return false;
 }
-bool MdiChild::SaveFile(const QString &fileName)
+bool MdiChild::SaveFile(const QString fileName)
 {
     return false;
 }
@@ -70,11 +70,11 @@ bool MdiChild::MaybeSave()
 {
     return false;
 }
-void MdiChild::SetCurrentFile(const QString &fileName)
+void MdiChild::SetCurrentFile(const QString fileName)
 {
 
 }
-QString MdiChild::StrippedName(const QString &fullFileName)
+QString MdiChild::StrippedName(const QString fullFileName)
 {
     return QString();
 }
