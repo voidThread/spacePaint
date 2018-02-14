@@ -54,18 +54,11 @@ void MainWindow::Open()
 }
 bool MainWindow::OpenFile(const QString &fileName)
 {
-    if (QMdiSubWindow *existing = FindMdiChild(fileName))
-    {
-        mdiArea->setActiveSubWindow(existing);
-        return true;
-    }
-
     const bool succeeded = LoadFile(fileName);
     if (succeeded)
     {
         statusBar()->showMessage("File loaded", 2000);
     }
-
     return succeeded;
 }
 bool MainWindow::LoadFile(const QString &fileName)

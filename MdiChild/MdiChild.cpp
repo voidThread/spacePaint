@@ -26,6 +26,7 @@ bool MdiChild::LoadFile(const QString &fileName)
     {
         image = imgRead.read();
         LoadImage(image);
+        setWindowTitle(fileName);
         setMaximumSize(image.size());
         setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
         setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);

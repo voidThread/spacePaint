@@ -7,9 +7,9 @@
 namespace GLOBAL_STRINGS
 {
     namespace PROGRAM_INFO {
-        extern QString PROGRAM_NAME;
-        extern QString ORGANIZATION_NAME;
-        extern QString PROGRAM_VERSION;
+        extern const QString PROGRAM_NAME;
+        extern const QString ORGANIZATION_NAME;
+        extern const QString PROGRAM_VERSION;
     }
 }
 #endif
