@@ -8,62 +8,72 @@
 
 MdiChild::MdiChild()
 {
-  setAttribute(Qt::WA_DeleteOnClose);
-  isUntitled = true;
+    setAttribute(Qt::WA_DeleteOnClose);
+    isUntitled = true;
 }
-void MdiChild::newFile()
+void MdiChild::NewFile()
 {
-  static int sequenceNumber = 0;
+    static int sequenceNumber = 0;
 
-  isUntitled = true;
-  openedFile = tr("drawing%1.jpg").arg(sequenceNumber++);
-  setWindowTitle(openedFile + "[*]");
+    isUntitled = true;
+    openedFile = tr("drawing%1.jpg").arg(sequenceNumber++);
+    setWindowTitle(openedFile + "[*]");
 }
-bool MdiChild::loadFile(const QString &fileName)
+bool MdiChild::LoadFile(const QString &fileName)
 {
-  QImageReader imgRead(fileName);
-  if (imgRead.canRead())
-  {
-    image = imgRead.read();
-    LoadImage(image);
-    setMaximumSize(image.size());
-    setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-    setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-    qDebug("Image readed");
-    return true;
-  } else
-  {
-    qDebug(imgRead.errorString().toStdString().c_str());
-  }
-  return false;
+    QImageReader imgRead(fileName);
+    if (imgRead.canRead())
+    {
+        image = imgRead.read();
+        LoadImage(image);
+        setMaximumSize(image.size());
+        setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+        setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+        qDebug("Image readed");
+        return true;
+    } else
+    {
+        qDebug(imgRead.errorString().toStdString().c_str());
+    }
+    return false;
 }
-bool MdiChild::save() {
-  return false;
+bool MdiChild::Save()
+{
+    return false;
 }
-bool MdiChild::saveAs() {
-  return false;
+bool MdiChild::SaveAs()
+{
+    return false;
 }
-bool MdiChild::saveFile(const QString &fileName) {
-  return false;
+bool MdiChild::SaveFile(const QString &fileName)
+{
+    return false;
 }
-QString MdiChild::userFriendlyCurrentFile() {
-  return QString();
+QString MdiChild::UserFriendlyCurrentFile()
+{
+    return QString();
 }
-QString MdiChild::currentFile() {
-  return QString();
+QString MdiChild::CurrentFile()
+{
+    return QString();
 }
-void MdiChild::closeEvent(QCloseEvent *event) {
-  QWidget::closeEvent(event);
+void MdiChild::closeEvent(QCloseEvent *event)
+{
+    QWidget::closeEvent(event);
 }
-void MdiChild::documentWasModified() {
+void MdiChild::DocumentWasModified()
+{
 
 }
-bool MdiChild::maybeSave() {
-  return false;
+bool MdiChild::MaybeSave()
+{
+    return false;
 }
-void MdiChild::setCurrentFile(const QString &fileName) {
+void MdiChild::SetCurrentFile(const QString &fileName)
+{
 
 }
-QString MdiChild::strippedName(const QString &fullFileName) {
-  return QString();
+QString MdiChild::StrippedName(const QString &fullFileName)
+{
+    return QString();
 }

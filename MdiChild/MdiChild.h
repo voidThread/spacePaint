@@ -1,38 +1,37 @@
-//
 // Created by voidThread on 12.02.18.
-//
-#pragma once
+#ifndef MDICHILD_H
+#define MDICHILD_H
 
 #include "PaintViewWidget/PaintViewWidget.h"
 
 class MdiChild : public PaintViewWidget
 {
-  Q_OBJECT
+    Q_OBJECT
 
  public:
-  MdiChild();
+    MdiChild();
 
-  void newFile();
-  bool loadFile(const QString &fileName);
-  bool save();
-  bool saveAs();
-  bool saveFile(const QString &fileName);
-  QString userFriendlyCurrentFile();
-  QString currentFile();
+    void NewFile();
+    bool LoadFile(const QString &fileName);
+    bool Save();
+    bool SaveAs();
+    bool SaveFile(const QString &fileName);
+    QString UserFriendlyCurrentFile();
+    QString CurrentFile();
 
  protected:
-  void closeEvent(QCloseEvent *event) override;
+    void closeEvent(QCloseEvent *event) override;
 
  private slots:
-  void documentWasModified();
+    void DocumentWasModified();
 
  private:
-  bool maybeSave();
-  void setCurrentFile(const QString &fileName);
-  QString strippedName(const QString &fullFileName);
+    bool MaybeSave();
+    void SetCurrentFile(const QString &fileName);
+    QString StrippedName(const QString &fullFileName);
 
-  QString openedFile;
-  bool isUntitled;
-  QImage image;
+    QString openedFile;
+    bool isUntitled;
+    QImage image;
 };
-
+#endif

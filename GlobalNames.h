@@ -1,4 +1,5 @@
-#pragma once
+#ifndef GLOBALNAMES_H
+#define GLOBALNAMES_H
 
 #include <QString>
 #include <QTranslator>
@@ -11,3 +12,4 @@ namespace GLOBAL_STRINGS
         extern QString PROGRAM_VERSION;
     }
 }
+#endif

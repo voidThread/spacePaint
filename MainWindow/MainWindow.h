@@ -1,4 +1,5 @@
-#pragma once
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
 
 #include <QMainWindow>
 #include <QtWidgets>
@@ -11,35 +12,36 @@ class MainWindow;
 
 class MainWindow : public QMainWindow
 {
-  Q_OBJECT
+    Q_OBJECT
 
  public:
-  explicit MainWindow(QWidget *parent = 0);
-  ~MainWindow();
+    explicit MainWindow(QWidget *parent = 0);
+    ~MainWindow();
 
-  bool openFile(const QString &fileName);
+    bool OpenFile(const QString &fileName);
 
  protected:
-  void closeEvent(QCloseEvent *event) override;
+    void closeEvent(QCloseEvent *event) override;
 
  private slots:
-  void newFile();
-  void open();
-  bool loadFile(const QString &fileName);
-  MdiChild* createMdiChild();
-  void updateMenus();
+    void NewFile();
+    void Open();
+    bool LoadFile(const QString &fileName);
+    MdiChild* CreateMdiChild();
+    void UpdateMenus();
 
  private:
-  Ui::MainWindow *ui;
+    Ui::MainWindow *ui;
 
-  MdiChild *activeMdiChild() const;
-  QMdiSubWindow *findMdiChild(const QString &fileName) const;
+    MdiChild *ActiveMdiChild() const;
+    QMdiSubWindow *FindMdiChild(const QString &fileName) const;
 
-  void createActions();
-  void createStatusBar();
+    void CreateActions();
+    void CreateStatusBar();
 
-  QMdiArea *mdiArea;
-  QMenu *windowMenu;
-  QAction *newAction;
-  QAction *openAction;
+    QMdiArea *mdiArea;
+    QMenu *windowMenu;
+    QAction *newAction;
+    QAction *openAction;
 };
+#endif
