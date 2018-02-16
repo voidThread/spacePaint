@@ -5,11 +5,16 @@
 #include <QMatrix>
 #include <QApplication>
 #include <QWheelEvent>
+#include <QMouseEvent>
 #include <QDebug>
 
 PaintViewWidget::PaintViewWidget(QWidget *parent)
     : QGraphicsView(parent)
 {
+    CreatePaintToolChangedMapping();
+    CreateMouseDownPaintToolMapping();
+    CreateMouseUpPaintToolMapping();
+
     this->setScene(&scene);
 
     connect(this, &PaintViewWidget::CanvasCreated,
@@ -31,6 +36,56 @@ void PaintViewWidget::wheelEvent(QWheelEvent *event)
     {
         ZoomOut();
     }
+}
+
+void PaintViewWidget::mousePressEvent(QMouseEvent *event)
+{
+    if (paintTool != PaintTool::NN && event->button() == Qt::LeftButton)
+    {
+        CallMouseEventHandler(paintTool, PaintToolMouseDownMappings, event);
+    }
+}
+
+void PaintViewWidget::mouseReleaseEvent(QMouseEvent *event)
+{
+    if (paintTool != PaintTool::NN && event->button() == Qt::LeftButton)
+    {
+        CallMouseEventHandler(paintTool, PaintToolMouseUpMappings, event);
+    }
+}
+
+void PaintViewWidget::CallMouseEventHandler(PaintTool tool, MouseEventHandlerMap & handlerMap, QMouseEvent *event)
+{
+    auto TargetHandlerMethod = handlerMap.find(tool);
+
+    if (TargetHandlerMethod == handlerMap.end() || !(*TargetHandlerMethod))
+    {
+        qDebug() << "CallMouseEventHandler: no handler found for selected paint tool (" <<
+                    static_cast<unsigned>(tool) << ")";
+        return;
+    }
+
+    (*TargetHandlerMethod)(event);
+}
+
+void PaintViewWidget::PaintToolChangeEventHandler(PaintTool tool)
+{
+    if (tool == PaintTool::NN)
+    {
+        qDebug() << "Unknown paint tool (" << static_cast<unsigned>(tool) << ")";
+        return;
+    }
+
+    auto TargetHandlerMethod = PaintToolChangeMappings.find(tool);
+
+    if (TargetHandlerMethod == PaintToolChangeMappings.end() || !(*TargetHandlerMethod))
+    {
+        qDebug() << "PaintToolChangeEventHandler: no handler found for selected paint tool (" <<
+                    static_cast<unsigned>(tool) << ")";
+        return;
+    }
+
+    (*TargetHandlerMethod)();
 }
 
 void PaintViewWidget::RenderToPainter(QPainter & painter)
@@ -69,6 +124,7 @@ void PaintViewWidget::ChangePaintTool(PaintTool tool)
      */
 
     paintTool = tool;
+    PaintToolChangeEventHandler(tool);
 
     emit PaintToolChanged(tool);
 }
@@ -203,4 +259,59 @@ void PaintViewWidget::SetZoomLevel(double zoom)
     this->scale(1.0 + delta, 1.0 + delta);
 
     emit ZoomChanged(zoomLevel);
+}
+
+void PaintViewWidget::CreatePaintToolChangedMapping()
+{
+    /*
+     * Bind handler methods for each paint tool.
+     * Specific handler will be called when paint tool is switched.
+     */
+
+    PaintToolChangeMappings.insert(PaintTool::Hand,
+                                   std::bind(&PaintViewWidget::HandToolChangeEvent, this));
+}
+
+void PaintViewWidget::CreateMouseDownPaintToolMapping()
+{
+    /*
+     * Bind handler methods for each paint tool.
+     * Specific handler will be called when left mouse button has been pressed.
+     */
+
+    PaintToolMouseDownMappings.insert(PaintTool::Hand,
+                                      std::bind(&PaintViewWidget::HandToolMouseDownEvent,
+                                                this,
+                                                std::placeholders::_1));
+}
+
+void PaintViewWidget::CreateMouseUpPaintToolMapping()
+{
+    /*
+     * Bind handler methods for each paint tool.
+     * Specific handler will be called when left mouse button has been released.
+     */
+
+    PaintToolMouseUpMappings.insert(PaintTool::Hand,
+                                    std::bind(&PaintViewWidget::HandToolMouseUpEvent,
+                                              this,
+                                              std::placeholders::_1));
+}
+
+/* Paint tool change event handlers */
+void PaintViewWidget::HandToolChangeEvent()
+{
+
+}
+
+/* Mouse down event handlers for paint tools */
+void PaintViewWidget::HandToolMouseDownEvent(QMouseEvent * event)
+{
+
+}
+
+/* Mouse up event handlers for paint tools */
+void PaintViewWidget::HandToolMouseUpEvent(QMouseEvent * event)
+{
+
 }
