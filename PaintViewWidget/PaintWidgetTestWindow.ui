@@ -192,13 +192,6 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_11">
-       <property name="text">
-        <string>HAND</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QPushButton" name="pushButton_3">
        <property name="text">
         <string>PEN</string>
