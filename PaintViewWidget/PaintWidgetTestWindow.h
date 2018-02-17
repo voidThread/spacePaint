@@ -33,6 +33,7 @@ private:
 private slots:
     void ZoomChanged(double newZoom);
     void on_pushButton_10_clicked();
+    void on_pushButton_11_clicked();
 };
 
 #endif // PAINTWIDGETTESTWINDOW_H

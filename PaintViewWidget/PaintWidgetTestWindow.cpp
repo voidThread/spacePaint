@@ -127,3 +127,12 @@ void PaintWidgetTestWindow::on_pushButton_10_clicked()
 
     ui->paintView->FitInView();
 }
+
+void PaintWidgetTestWindow::on_pushButton_11_clicked()
+{
+    /*
+     * Change paint tool to hand.
+     */
+
+    ui->paintView->ChangePaintTool(PaintTool::Hand);
+}
