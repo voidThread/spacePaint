@@ -24,6 +24,7 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     QWidget::closeEvent(event);
@@ -37,6 +38,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
         event->accept();
     }
 }
+
 void MainWindow::NewFile()
 {
     MdiChild *child = CreateMdiChild();
@@ -44,6 +46,7 @@ void MainWindow::NewFile()
     child->show();
     statusBar()->showMessage("File created", 2000);
 }
+
 void MainWindow::Open()
 {
     const QString fileName = QFileDialog::getOpenFileName(this);
@@ -52,6 +55,7 @@ void MainWindow::Open()
         OpenFile(fileName);
     }
 }
+
 bool MainWindow::OpenFile(const QString fileName)
 {
     const bool succeeded = LoadFile(fileName);
@@ -61,6 +65,7 @@ bool MainWindow::OpenFile(const QString fileName)
     }
     return succeeded;
 }
+
 bool MainWindow::LoadFile(const QString fileName)
 {
     MdiChild *child = CreateMdiChild();
@@ -76,6 +81,7 @@ bool MainWindow::LoadFile(const QString fileName)
 
     return succeeded;
 }
+
 void MainWindow::CreateActions()
 {
     QMenu *fileMenu = menuBar()->addMenu(tr("File"));
@@ -91,24 +97,29 @@ void MainWindow::CreateActions()
     fileMenu->addAction(openAction);
     fileToolBar->addAction(openAction);
 }
+
 void MainWindow::CreateStatusBar()
 {
     statusBar()->showMessage("Ready");
 }
+
 MdiChild *MainWindow::CreateMdiChild()
 {
     MdiChild *child = new MdiChild;
     mdiArea->addSubWindow(child);
     return child;
 }
+
 void MainWindow::UpdateMenus()
 {
 
 }
+
 MdiChild *MainWindow::ActiveMdiChild() const
 {
     return nullptr;
 }
+
 QMdiSubWindow *MainWindow::FindMdiChild(const QString fileName) const
 {
     return nullptr;

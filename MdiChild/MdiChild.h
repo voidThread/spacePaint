@@ -1,4 +1,3 @@
-// Created by voidThread on 12.02.18.
 #ifndef MDICHILD_H
 #define MDICHILD_H
 
