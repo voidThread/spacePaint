@@ -18,9 +18,6 @@ class MdiChild : public PaintViewWidget
     QString UserFriendlyCurrentFile();
     QString CurrentFile();
 
- protected:
-    void closeEvent(QCloseEvent *event) override;
-
  private slots:
     void DocumentWasModified();
 

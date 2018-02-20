@@ -27,16 +27,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    QWidget::closeEvent(event);
     mdiArea->closeAllSubWindows();
-
-    if(mdiArea->currentSubWindow())
-    {
-        event->ignore();
-    } else
-    {
-        event->accept();
-    }
 }
 
 void MainWindow::NewFile()

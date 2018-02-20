@@ -25,9 +25,6 @@ bool MdiChild::LoadFile(const QString fileName)
         image = imgRead.read();
         LoadImage(image);
         setWindowTitle(fileName);
-        setMaximumSize(image.size());
-        setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-        setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
         qDebug("Image readed");
         return true;
     } else
@@ -60,11 +57,6 @@ QString MdiChild::UserFriendlyCurrentFile()
 QString MdiChild::CurrentFile()
 {
     return QString();
-}
-
-void MdiChild::closeEvent(QCloseEvent *event)
-{
-    QWidget::closeEvent(event);
 }
 
 void MdiChild::DocumentWasModified()
