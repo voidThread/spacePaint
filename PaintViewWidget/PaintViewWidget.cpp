@@ -62,7 +62,7 @@ void PaintViewWidget::LoadImage(const QString filename)
     CreateNewCanvas(pixmapToLoad.width(), pixmapToLoad.height());
 }
 
-void PaintViewWidget::ChangePaintTool(PaintTool tool)
+void PaintViewWidget::ChangePaintTool(const PaintTool tool)
 {
     /*
      * (SLOT) Change the current paint tool selected to use.
@@ -73,7 +73,7 @@ void PaintViewWidget::ChangePaintTool(PaintTool tool)
     emit PaintToolChanged(tool);
 }
 
-void PaintViewWidget::ChangeColor(QColor color)
+void PaintViewWidget::ChangeColor(const QColor color)
 {
     /*
      * (SLOT) Change the current selected color. Used by some painting tools
@@ -83,7 +83,7 @@ void PaintViewWidget::ChangeColor(QColor color)
     emit ColorChanged(color);
 }
 
-void PaintViewWidget::CreateNewCanvas(unsigned width, unsigned height)
+void PaintViewWidget::CreateNewCanvas(const unsigned width, const unsigned height)
 {
     /*
      * (SLOT) Clear the current canvas and create new.
@@ -195,7 +195,7 @@ void PaintViewWidget::OnCanvasCreated()
     }
 }
 
-void PaintViewWidget::SetZoomLevel(double zoom)
+void PaintViewWidget::SetZoomLevel(const double zoom)
 {
     double delta = zoom - zoomLevel;
 

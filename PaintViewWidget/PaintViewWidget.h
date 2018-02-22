@@ -37,21 +37,21 @@ private slots:
     void OnCanvasCreated();
 
 public slots:
-    void ChangePaintTool(PaintTool tool);
-    void ChangeColor(QColor color);
-    void CreateNewCanvas(unsigned width, unsigned height);
+    void ChangePaintTool(const PaintTool tool);
+    void ChangeColor(const QColor color);
+    void CreateNewCanvas(const unsigned width, const unsigned height);
     void ZoomIn();
     void ZoomOut();
     void ZoomReset();
-    void SetZoomLevel(double zoom);
+    void SetZoomLevel(const double zoom);
     void FitInView();
 
 signals:
-    void ZoomChanged(double newZoom);
-    void CanvasCreated();
-    void ImageLoaded();
-    void PaintToolChanged(PaintTool tool);
-    void ColorChanged(QColor color);
+    void ZoomChanged(const double newZoom) const;
+    void CanvasCreated() const;
+    void ImageLoaded() const;
+    void PaintToolChanged(const PaintTool tool) const;
+    void ColorChanged(const QColor color) const;
 };
 
 #endif // PAINTVIEWWIDGET_H
