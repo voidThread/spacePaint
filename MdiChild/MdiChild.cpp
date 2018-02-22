@@ -1,5 +1,6 @@
 #include <QtGui/QTextDocument>
 #include <QtGui/QImageReader>
+#include <QDebug>
 #include "MdiChild.h"
 
 MdiChild::MdiChild()
@@ -25,11 +26,11 @@ bool MdiChild::LoadFile(const QString fileName)
         image = imgRead.read();
         LoadImage(image);
         setWindowTitle(fileName);
-        qDebug("Image readed");
+        qDebug() << "Image readed";
         return true;
     } else
     {
-        qDebug(imgRead.errorString().toStdString().c_str());
+        qDebug() << imgRead.errorString();
     }
     return false;
 }
