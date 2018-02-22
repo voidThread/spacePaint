@@ -24,17 +24,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-        main.cpp \
-    MainWindow.cpp \
+    main.cpp \
+    GlobalNames.cpp \
+    MainWindow/MainWindow.cpp \
     PaintViewWidget/PaintViewWidget.cpp \
-    PaintViewWidget/PaintWidgetTestWindow.cpp
+    MdiChild/MdiChild.cpp
 
 HEADERS += \
-    MainWindow.h \
+    GlobalNames.h \
+    MainWindow/MainWindow.h \
     PaintViewWidget/PaintTool.h \
     PaintViewWidget/PaintViewWidget.h \
-    PaintViewWidget/PaintWidgetTestWindow.h
+    MdiChild/MdiChild.h
 
 FORMS += \
-    MainWindow.ui \
-    PaintViewWidget/PaintWidgetTestWindow.ui
+    MainWindow/MainWindow.ui

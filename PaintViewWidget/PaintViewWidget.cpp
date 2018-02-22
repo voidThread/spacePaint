@@ -40,7 +40,7 @@ void PaintViewWidget::RenderToPainter(QPainter & painter)
      */
 }
 
-void PaintViewWidget::LoadImage(QImage & image)
+void PaintViewWidget::LoadImage(const QImage &image)
 {
     /*
      * Load raster image from QImage instance.
@@ -51,7 +51,7 @@ void PaintViewWidget::LoadImage(QImage & image)
     CreateNewCanvas(image.width(), image.height());
 }
 
-void PaintViewWidget::LoadImage(QString filename)
+void PaintViewWidget::LoadImage(const QString filename)
 {
     /*
      * Load raster image from hard drive.

@@ -15,8 +15,8 @@ public:
     void RenderToPainter(QPainter & painter);
     void wheelEvent(QWheelEvent *event) override;
 
-    void LoadImage(QImage & image);
-    void LoadImage(QString filename);
+    void LoadImage(const QImage & image);
+    void LoadImage(const QString filename);
 
     double GetZoom() const;
     unsigned CanvasWidth() const;
