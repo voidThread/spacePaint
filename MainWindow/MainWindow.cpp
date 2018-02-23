@@ -1,6 +1,8 @@
 #include <GlobalNames.h>
 #include <MainWindow/MainWindow.h>
 #include <MdiChild/MdiChild.h>
+#include <QToolBar>
+
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -18,6 +20,8 @@ MainWindow::MainWindow(QWidget *parent)
     CreateActions();
     CreateStatusBar();
     setWindowTitle(GLOBAL_STRINGS::PROGRAM_INFO::PROGRAM_NAME);
+
+    CreatePaintToolsBar();
 }
 
 MainWindow::~MainWindow()
@@ -94,9 +98,23 @@ void MainWindow::CreateStatusBar()
     statusBar()->showMessage("Ready");
 }
 
+void MainWindow::CreatePaintToolsBar()
+{
+    paintToolsPalette = new PaintToolsPalette();
+
+    paintToolsBar = new QToolBar("Tools");
+    paintToolsBar->addWidget(paintToolsPalette);
+
+    this->addToolBar(Qt::LeftToolBarArea, paintToolsBar);
+}
+
 MdiChild *MainWindow::CreateMdiChild()
 {
     MdiChild *child = new MdiChild;
+
+    connect(paintToolsPalette, &PaintToolsPalette::PaintToolChanged,
+            child, &MdiChild::ChangePaintTool);
+
     mdiArea->addSubWindow(child);
     return child;
 }

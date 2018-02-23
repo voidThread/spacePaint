@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/images/icons/paint_tools">
+        <file alias="brush.png">Resources/Icons/PaintTools/brush.png</file>
+        <file alias="crayon.png">Resources/Icons/PaintTools/crayon.png</file>
+        <file alias="eraser.png">Resources/Icons/PaintTools/eraser.png</file>
+        <file alias="pen.png">Resources/Icons/PaintTools/pen.png</file>
+        <file alias="spray.png">Resources/Icons/PaintTools/spray.png</file>
+        <file alias="color_picker.png">Resources/Icons/PaintTools/color_picker.png</file>
+        <file alias="flood_fill.png">Resources/Icons/PaintTools/flood_fill.png</file>
+        <file alias="hand.png">Resources/Icons/PaintTools/hand.png</file>
+        <file alias="selection.png">Resources/Icons/PaintTools/selection.png</file>
+        <file alias="zoom.png">Resources/Icons/PaintTools/zoom.png</file>
+    </qresource>
+</RCC>

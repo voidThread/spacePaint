@@ -7,14 +7,17 @@ enum class PaintTool : unsigned
 
     Hand        = 0,
     Pen         = 1,
-    Eraser      = 2,
-    Spray       = 3,
-    Line        = 4,
-    Shape       = 5,
-    ColorPicker = 6,
-    Text        = 7,
-    Selection   = 8,
-    FloodFill   = 9
+    Crayon      = 2,
+    Brush       = 3,
+    Eraser      = 4,
+    Spray       = 5,
+    Line        = 6,
+    Shape       = 7,
+    ColorPicker = 8,
+    Text        = 9,
+    Selection   = 10,
+    FloodFill   = 11,
+    Zoom        = 12
 };
 
 #endif // PAINTTOOL_H

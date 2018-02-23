@@ -22,14 +22,17 @@ void PaintViewWidget::wheelEvent(QWheelEvent *event)
      * Mouse wheel handler.
      */
 
-    // Handle zoom-in / zoom-out
-    if (event->delta() > 0)
+    if (paintTool == PaintTool::Zoom)
     {
-        ZoomIn();
-    }
-    else
-    {
-        ZoomOut();
+        // Handle zoom-in / zoom-out
+        if (event->delta() > 0)
+        {
+            ZoomIn();
+        }
+        else
+        {
+            ZoomOut();
+        }
     }
 }
 
