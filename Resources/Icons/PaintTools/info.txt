@@ -1,0 +1,10 @@
+brush.png https://www.flaticon.com/free-icon/paint-brush_214275#
+crayon.png https://www.flaticon.com/free-icon/pencil_214331
+pen.png https://www.flaticon.com/free-icon/pen_230329
+spray.png https://www.flaticon.com/free-icon/paint-spray_737803
+eraser.png https://www.flaticon.com/free-icon/eraser_167722
+hand.png https://www.flaticon.com/free-icon/hold_148904
+color_picker.png https://www.flaticon.com/free-icon/picker_716169
+flood_fill.png https://www.flaticon.com/free-icon/bucket_137065
+selection.png https://www.flaticon.com/free-icon/select_137117
+zoom.png https://www.flaticon.com/free-icon/search_148928

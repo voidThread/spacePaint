@@ -28,14 +28,20 @@ SOURCES += \
     GlobalNames.cpp \
     MainWindow/MainWindow.cpp \
     PaintViewWidget/PaintViewWidget.cpp \
-    MdiChild/MdiChild.cpp
+    MdiChild/MdiChild.cpp \
+    PaintToolsPalette/PaintToolsPalette.cpp
 
 HEADERS += \
     GlobalNames.h \
     MainWindow/MainWindow.h \
     PaintViewWidget/PaintTool.h \
     PaintViewWidget/PaintViewWidget.h \
-    MdiChild/MdiChild.h
+    MdiChild/MdiChild.h \
+    PaintToolsPalette/PaintToolsPalette.h
 
 FORMS += \
-    MainWindow/MainWindow.ui
+    MainWindow/MainWindow.ui \
+    PaintToolsPalette/PaintToolsPalette.ui
+
+RESOURCES += \
+    resources.qrc

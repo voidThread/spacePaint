@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QtWidgets>
 
+#include "PaintToolsPalette/PaintToolsPalette.h"
+
 class MdiChild;
 
 namespace Ui {
@@ -32,12 +34,15 @@ class MainWindow : public QMainWindow
 
  private:
     Ui::MainWindow *ui;
+    QToolBar * paintToolsBar = nullptr;
+    PaintToolsPalette * paintToolsPalette = nullptr;
 
     MdiChild *ActiveMdiChild() const;
     QMdiSubWindow *FindMdiChild(const QString fileName) const;
 
     void CreateActions();
     void CreateStatusBar();
+    void CreatePaintToolsBar();
 
     QMdiArea *mdiArea;
     QMenu *windowMenu;
