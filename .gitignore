@@ -1,6 +1,7 @@
 *.user
+*.orig
+
 .idea/*
 cmake-build-debug/*
 
-CMakeLists.txt
 .editorconfig
