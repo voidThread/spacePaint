@@ -36,6 +36,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 void MainWindow::NewFile()
 {
+
     MdiChild *child = CreateMdiChild();
     child->NewFile();
     child->show();

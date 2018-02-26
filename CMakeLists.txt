@@ -18,7 +18,7 @@ set(SOURCE_FILES MainWindow/MainWindow.cpp
         PaintToolsPalette/PaintToolsPalette.h
         GlobalNames.h
         main.cpp MdiChild/MdiChild.cpp MdiChild/MdiChild.h GlobalNames.cpp
-        resources.qrc)
+        resources.qrc NewFileDialog/NewFileDialog.cpp NewFileDialog/NewFileDialog.h)
 
 add_executable(spacePaint ${SOURCE_FILES})
 target_include_directories(spacePaint PRIVATE "../build-spacePaint-Desktop_Qt_5_10_1_GCC_64bit2-Debug")
