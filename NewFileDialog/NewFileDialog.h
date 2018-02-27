@@ -3,7 +3,18 @@
 
 #include <QtWidgets/QDialog>
 
+namespace Ui {
+  class NewFileDialog;
+}
+
 class NewFileDialog : public QDialog
 {
+  Q_OBJECT
+ public:
+  NewFileDialog(QWidget *parent);
+  virtual ~NewFileDialog();
+
+ private:
+  Ui::NewFileDialog *ui;
 };
-#endif
+#endif // NEWFILEDIALOG_H

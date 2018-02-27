@@ -2,6 +2,7 @@
 #include <MainWindow/MainWindow.h>
 #include <MdiChild/MdiChild.h>
 #include <QToolBar>
+#include <NewFileDialog/NewFileDialog.h>
 
 #include "ui_mainwindow.h"
 
@@ -36,7 +37,8 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 void MainWindow::NewFile()
 {
-
+    NewFileDialog newFileDialog(this);
+    newFileDialog.exec();
     MdiChild *child = CreateMdiChild();
     child->NewFile();
     child->show();
