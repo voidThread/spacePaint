@@ -9,12 +9,21 @@ namespace Ui {
 
 class NewFileDialog : public QDialog
 {
-  Q_OBJECT
+    Q_OBJECT
+
  public:
-  NewFileDialog(QWidget *parent);
-  virtual ~NewFileDialog();
+  explicit NewFileDialog(QWidget *parent = 0);
+  ~NewFileDialog();
+
+ signals:
+  void NewFileCreate(QObject *button);
+
+ private slots:
+  void NewFileButtonClicked(bool);
 
  private:
   Ui::NewFileDialog *ui;
+  
+  void ConnectNewFileButton();
 };
 #endif // NEWFILEDIALOG_H
