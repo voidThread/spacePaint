@@ -23,6 +23,9 @@ MainWindow::MainWindow(QWidget *parent)
     setWindowTitle(GLOBAL_STRINGS::PROGRAM_INFO::PROGRAM_NAME);
 
     CreatePaintToolsBar();
+
+    //TODO - temporary setting size from magic numbers
+    resize(QDesktopWidget().availableGeometry(this).size() * 0.7);
 }
 
 MainWindow::~MainWindow()
