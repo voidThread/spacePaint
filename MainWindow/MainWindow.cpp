@@ -37,10 +37,16 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 void MainWindow::NewFile()
 {
-    NewFileDialog newFileDialog(this);
-    newFileDialog.exec();
+  NewFileDialog newFileDialog(this);
+  connect(static_cast<QDialog*>(&newFileDialog), SIGNAL(NewFileCreate(QSize)),
+          this, SLOT(NewFileCreate(QSize)));
+  newFileDialog.exec();
+}
+
+void MainWindow::NewFileCreate(QSize CanvasSize)
+{
     MdiChild *child = CreateMdiChild();
-    child->NewFile();
+  child->NewFile(CanvasSize);
     child->show();
     statusBar()->showMessage("File created", 2000);
 }

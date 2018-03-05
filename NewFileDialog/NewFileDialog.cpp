@@ -8,6 +8,7 @@ NewFileDialog::NewFileDialog(QWidget *parent)
     ui->setupUi(this);
 
     ConnectNewFileButton();
+    ConnectCancelButton();
 }
 
 NewFileDialog::~NewFileDialog() {
@@ -16,11 +17,23 @@ NewFileDialog::~NewFileDialog() {
 
 void NewFileDialog::NewFileButtonClicked(bool)
 {
-    emit NewFileCreate(sender());
+    QSize CanvasSize(ui->newCanvasSizeWidth->text().toInt(), ui->newCanvasSizeHeight->text().toInt());
+    emit NewFileCreate(CanvasSize);
 }
 
 void NewFileDialog::ConnectNewFileButton()
 {
-  connect(ui->NewFileButton, &QPushButton::clicked,
+    connect(ui->NewFileButton, &QPushButton::clicked,
           this, &NewFileDialog::NewFileButtonClicked);
+}
+
+void NewFileDialog::CancelButtonClicked(bool)
+{
+    emit CancelNewFile(sender());
+}
+
+void NewFileDialog::ConnectCancelButton()
+{
+    connect(ui->CancellButton, &QPushButton::clicked,
+          this, &NewFileDialog::CancelButtonClicked);
 }

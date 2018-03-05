@@ -27,6 +27,7 @@ class MainWindow : public QMainWindow
 
  private slots:
     void NewFile();
+    void NewFileCreate(QSize);
     void Open();
     bool LoadFile(const QString fileName);
     MdiChild* CreateMdiChild();

@@ -10,7 +10,7 @@ class MdiChild : public PaintViewWidget
  public:
     MdiChild();
 
-    void NewFile();
+    void NewFile(QSize CanvasSize);
     bool LoadFile(const QString fileName);
     bool Save();
     bool SaveAs();

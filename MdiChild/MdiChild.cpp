@@ -9,13 +9,14 @@ MdiChild::MdiChild()
     isUntitled = true;
 }
 
-void MdiChild::NewFile()
+void MdiChild::NewFile(QSize CanvasSize)
 {
     static int sequenceNumber = 0;
 
     isUntitled = true;
     openedFile = tr("drawing%1.jpg").arg(sequenceNumber++);
     setWindowTitle(openedFile + "[*]");
+    this->setFixedSize(CanvasSize);
 }
 
 bool MdiChild::LoadFile(const QString fileName)
