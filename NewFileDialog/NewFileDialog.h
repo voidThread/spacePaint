@@ -17,7 +17,6 @@ class NewFileDialog : public QDialog
 
  signals:
   void NewFileCreate(QSize);
-  void CancelNewFile(QObject *button);
 
  private slots:
   void NewFileButtonClicked(bool);

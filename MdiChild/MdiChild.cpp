@@ -1,6 +1,7 @@
 #include <QtGui/QTextDocument>
 #include <QtGui/QImageReader>
 #include <QDebug>
+#include <QtGui/QImageWriter>
 #include "MdiChild.h"
 
 MdiChild::MdiChild()
@@ -16,7 +17,14 @@ void MdiChild::NewFile(QSize CanvasSize)
     isUntitled = true;
     openedFile = tr("drawing%1.jpg").arg(sequenceNumber++);
     setWindowTitle(openedFile + "[*]");
-    this->setFixedSize(CanvasSize);
+    setMinimumSize(QSize(1,1));
+    setMaximumSize(QSize(99999, 99999));
+    setSizePolicy(QSizePolicy(QSizePolicy::Policy::Preferred,
+                              QSizePolicy::Policy::Preferred));
+  fitInView(QRectF(QPointF(0,0), CanvasSize), Qt::KeepAspectRatio);
+  resize(CanvasSize);
+  setFixedSize(CanvasSize);
+  update();
 }
 
 bool MdiChild::LoadFile(const QString fileName)
@@ -25,6 +33,7 @@ bool MdiChild::LoadFile(const QString fileName)
     if (imgRead.canRead())
     {
         image = imgRead.read();
+        openedFile = fileName;
         LoadImage(image);
         setWindowTitle(fileName);
         qDebug() << "Image readed";
@@ -38,7 +47,16 @@ bool MdiChild::LoadFile(const QString fileName)
 
 bool MdiChild::Save()
 {
-    return false;
+    QImageWriter imgWriter(openedFile);
+    if (imgWriter.write(image))
+    {
+        return true;
+    } else
+    {
+        qDebug() << imgWriter.errorString();
+        return false;
+    }
+
 }
 
 bool MdiChild::SaveAs()

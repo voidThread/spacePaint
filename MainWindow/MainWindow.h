@@ -31,6 +31,7 @@ class MainWindow : public QMainWindow
     void Open();
     bool LoadFile(const QString fileName);
     MdiChild* CreateMdiChild();
+    void SaveFile();
     void UpdateMenus();
 
  private:
@@ -49,5 +50,6 @@ class MainWindow : public QMainWindow
     QMenu *windowMenu;
     QAction *newAction;
     QAction *openAction;
+    QAction *saveAction;
 };
 #endif

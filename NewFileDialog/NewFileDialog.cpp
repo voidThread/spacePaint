@@ -19,6 +19,7 @@ void NewFileDialog::NewFileButtonClicked(bool)
 {
     QSize CanvasSize(ui->newCanvasSizeWidth->text().toInt(), ui->newCanvasSizeHeight->text().toInt());
     emit NewFileCreate(CanvasSize);
+    accept();
 }
 
 void NewFileDialog::ConnectNewFileButton()
@@ -29,7 +30,7 @@ void NewFileDialog::ConnectNewFileButton()
 
 void NewFileDialog::CancelButtonClicked(bool)
 {
-    emit CancelNewFile(sender());
+    accept();
 }
 
 void NewFileDialog::ConnectCancelButton()
