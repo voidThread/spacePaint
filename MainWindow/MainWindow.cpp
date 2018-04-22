@@ -3,7 +3,7 @@
 #include <MdiChild/MdiChild.h>
 #include <QToolBar>
 
-#include "ui_mainwindow.h"
+#include "ui_MainWindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
