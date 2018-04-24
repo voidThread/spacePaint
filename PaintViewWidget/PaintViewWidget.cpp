@@ -12,6 +12,8 @@ PaintViewWidget::PaintViewWidget(QWidget *parent)
 {
     this->setScene(&scene);
 
+    qRegisterMetaType<PaintTool>("PaintTool");
+
     connect(this, &PaintViewWidget::CanvasCreated,
             this, &PaintViewWidget::OnCanvasCreated);
 }
@@ -83,10 +85,12 @@ void PaintViewWidget::ChangeColor(const QColor color)
      * like pen, flood fill and so on.
      */
 
+    selectedColor = color;
+
     emit ColorChanged(color);
 }
 
-void PaintViewWidget::CreateNewCanvas(const unsigned width, const unsigned height)
+void PaintViewWidget::CreateNewCanvas(const int width, const int height)
 {
     /*
      * (SLOT) Clear the current canvas and create new.
@@ -162,12 +166,12 @@ void PaintViewWidget::FitInView()
     emit ZoomChanged(zoomLevel);
 }
 
-unsigned PaintViewWidget::CanvasWidth() const
+int PaintViewWidget::CanvasWidth() const
 {
     return canvasWidth;
 }
 
-unsigned PaintViewWidget::CanvasHeight() const
+int PaintViewWidget::CanvasHeight() const
 {
     return canvasHeight;
 }
@@ -179,6 +183,15 @@ PaintTool PaintViewWidget::SelectedPaintTool() const
      */
 
     return paintTool;
+}
+
+QColor PaintViewWidget::SelectedColor() const
+{
+    /*
+     * Get current painting color.
+     */
+
+    return selectedColor;
 }
 
 void PaintViewWidget::OnCanvasCreated()
@@ -206,4 +219,19 @@ void PaintViewWidget::SetZoomLevel(const double zoom)
     this->scale(1.0 + delta, 1.0 + delta);
 
     emit ZoomChanged(zoomLevel);
+}
+
+QPixmap PaintViewWidget::GetBackground()
+{
+    /* Get background image.
+     * Warning: does not yet flatten the image (layers and/or drawings) -
+     * it has to be coded here.
+     */
+
+    if (backgroundItem == nullptr)
+    {
+        return QPixmap();
+    }
+
+    return backgroundItem->pixmap();
 }

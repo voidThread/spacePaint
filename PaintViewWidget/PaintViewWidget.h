@@ -5,8 +5,14 @@
 
 #include "PaintTool.h"
 
+Q_DECLARE_METATYPE(PaintTool)
+
 class PaintViewWidget : public QGraphicsView
 {
+#ifdef UNIT_TESTS
+    friend class TestPaintViewWidget;
+#endif
+
     Q_OBJECT
 
 public:
@@ -19,19 +25,22 @@ public:
     void LoadImage(const QString filename);
 
     double GetZoom() const;
-    unsigned CanvasWidth() const;
-    unsigned CanvasHeight() const;
+    int CanvasWidth() const;
+    int CanvasHeight() const;
     PaintTool SelectedPaintTool() const;
+    QPixmap GetBackground();
+    QColor SelectedColor() const;
 
 private:
     QGraphicsScene scene;
     PaintTool paintTool = PaintTool::NN;
-    unsigned canvasWidth = 0;
-    unsigned canvasHeight = 0;
+    int canvasWidth = 0;
+    int canvasHeight = 0;
     QPixmap pixmapToLoad;
     double zoomLevel = 1.0;
     QGraphicsPixmapItem * backgroundItem = nullptr;
     double zoomStep = 0.05; // To be configured by settings
+    QColor selectedColor;
 
 private slots:
     void OnCanvasCreated();
@@ -39,7 +48,7 @@ private slots:
 public slots:
     void ChangePaintTool(const PaintTool tool);
     void ChangeColor(const QColor color);
-    void CreateNewCanvas(const unsigned width, const unsigned height);
+    void CreateNewCanvas(const int width, const int height);
     void ZoomIn();
     void ZoomOut();
     void ZoomReset();
