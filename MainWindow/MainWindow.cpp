@@ -2,6 +2,8 @@
 #include <MainWindow/MainWindow.h>
 #include <MdiChild/MdiChild.h>
 #include <QToolBar>
+#include <NewFileDialog/NewFileDialog.h>
+#include <QDebug>
 
 #include "ui_MainWindow.h"
 
@@ -22,6 +24,9 @@ MainWindow::MainWindow(QWidget *parent)
     setWindowTitle(GLOBAL_STRINGS::PROGRAM_INFO::PROGRAM_NAME);
 
     CreatePaintToolsBar();
+
+    //TODO - temporary setting size from magic numbers
+    resize(QDesktopWidget().availableGeometry(this).size() * 0.7);
 }
 
 MainWindow::~MainWindow()
@@ -36,8 +41,16 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 void MainWindow::NewFile()
 {
+  NewFileDialog newFileDialog(this);
+  connect(static_cast<QDialog*>(&newFileDialog), SIGNAL(NewFileCreate(QSize)),
+          this, SLOT(NewFileCreate(QSize)));
+  newFileDialog.exec();
+}
+
+void MainWindow::NewFileCreate(QSize CanvasSize)
+{
     MdiChild *child = CreateMdiChild();
-    child->NewFile();
+    child->NewFile(CanvasSize);
     child->show();
     statusBar()->showMessage("File created", 2000);
 }
@@ -91,6 +104,11 @@ void MainWindow::CreateActions()
     connect(openAction, &QAction::triggered, this, &MainWindow::Open);
     fileMenu->addAction(openAction);
     fileToolBar->addAction(openAction);
+
+    saveAction = new QAction(QIcon(), tr("Save file"), this);
+    connect(saveAction, &QAction::triggered, this, &MainWindow::SaveFile);
+    fileMenu->addAction(saveAction);
+    fileToolBar->addAction(saveAction);
 }
 
 void MainWindow::CreateStatusBar()
@@ -132,4 +150,19 @@ MdiChild *MainWindow::ActiveMdiChild() const
 QMdiSubWindow *MainWindow::FindMdiChild(const QString fileName) const
 {
     return nullptr;
+}
+
+void MainWindow::SaveFile()
+{
+    auto child = mdiArea->currentSubWindow()->widget();
+    auto actualChild = dynamic_cast<MdiChild*>(child);
+    if (actualChild == nullptr)
+    {
+        qDebug() << "Don't recognize any active child";
+        statusBar()->showMessage("Error while saving", 6000);
+        return;
+    }
+
+    actualChild->Save();
+    statusBar()->showMessage("File saved", 2000);
 }

@@ -27,9 +27,11 @@ class MainWindow : public QMainWindow
 
  private slots:
     void NewFile();
+    void NewFileCreate(QSize);
     void Open();
     bool LoadFile(const QString fileName);
     MdiChild* CreateMdiChild();
+    void SaveFile();
     void UpdateMenus();
 
  private:
@@ -48,5 +50,6 @@ class MainWindow : public QMainWindow
     QMenu *windowMenu;
     QAction *newAction;
     QAction *openAction;
+    QAction *saveAction;
 };
 #endif

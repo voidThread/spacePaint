@@ -1,5 +1,6 @@
 *.user
 *.orig
+*.autosave
 
 .idea/*
 cmake-build-debug/*

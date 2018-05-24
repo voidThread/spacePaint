@@ -29,7 +29,8 @@ SOURCES += \
     MainWindow/MainWindow.cpp \
     PaintViewWidget/PaintViewWidget.cpp \
     MdiChild/MdiChild.cpp \
-    PaintToolsPalette/PaintToolsPalette.cpp
+    PaintToolsPalette/PaintToolsPalette.cpp \
+    NewFileDialog/NewFileDialog.cpp
 
 HEADERS += \
     GlobalNames.h \
@@ -37,11 +38,13 @@ HEADERS += \
     PaintViewWidget/PaintTool.h \
     PaintViewWidget/PaintViewWidget.h \
     MdiChild/MdiChild.h \
-    PaintToolsPalette/PaintToolsPalette.h
+    PaintToolsPalette/PaintToolsPalette.h \
+    NewFileDialog/NewFileDialog.h
 
 FORMS += \
     MainWindow/MainWindow.ui \
-    PaintToolsPalette/PaintToolsPalette.ui
+    PaintToolsPalette/PaintToolsPalette.ui \
+    NewFileDialog/NewFileDialog.ui
 
 RESOURCES += \
     resources.qrc
